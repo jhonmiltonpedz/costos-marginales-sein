@@ -43,8 +43,10 @@ Python (pandas, NumPy, matplotlib), Jupyter Notebook
 - `images/` – gráficos usados en este README
 
 ## Cómo ejecutarlo
+```
 pip install -r requirements.txt
 jupyter notebook
+```
 
 ## Autor
 Jhon Milton Peralta Diaz – Bachiller en Ingeniería Eléctrica (UNMSM)
