@@ -14,10 +14,12 @@ barata; en estiaje (aprox. junio a noviembre) entra más generación térmica,
 lo que eleva los costos marginales. Este proyecto cuantifica ese efecto.
 
 ## Datos
-- **Fuente:** COES SINAC, portal de estadísticas (coes.org.pe)
-- **Variables:** costo marginal por barra (USD/MWh) y demanda del SEIN (MW)
-- **Periodo analizado:** [completar]
-- **Barra de referencia:** [ej. Santa Rosa 220 kV]
+- **Fuente:** COES SINAC, portal web (coes.org.pe), sección Transferencias > Costos Marginales y Portal de Información > Demanda
+- **Variables:** costo marginal de corto plazo (S/./MWh) y demanda ejecutada del SEIN (MW)
+- **Resolución:** intervalos de 15 minutos
+- **Periodo analizado:** junio 2024 – mayo 2026 (dos años hidrológicos)
+- **Barra de referencia:** Santa Rosa 220 kV
+- **Nota:** el COES publica el costo marginal en S/./kWh; se convirtió a S/./MWh multiplicando por 1000.
 
 ## Metodología
 1. Descarga y limpieza de datos con pandas
