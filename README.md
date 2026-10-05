@@ -11,25 +11,27 @@ y la de estiaje, y qué tanto influye la demanda?
 El Perú depende en buena parte de la generación hidroeléctrica. En avenida
 (aprox. diciembre a mayo) hay más agua disponible y la generación es más
 barata; en estiaje (aprox. junio a noviembre) entra más generación térmica,
-lo que eleva los costos marginales. Este proyecto cuantifica ese efecto.
+lo que eleva los costos marginales. Este proyecto verifica qué tan grande es
+ese efecto en la práctica y cuánto pesa la demanda frente a la hidrología.
 
 ## Datos
 - **Fuente:** COES SINAC, portal web (coes.org.pe), sección Transferencias > Costos Marginales y Portal de Información > Demanda
 - **Variables:** costo marginal de corto plazo (S/./MWh) y demanda ejecutada del SEIN (MW)
-- **Resolución:** intervalos de 15 minutos
+- **Resolución:** costo marginal cada 15 min y demanda cada 30 min; el análisis se hizo a 30 min (promediando el costo marginal)
 - **Periodo analizado:** junio 2024 – mayo 2026 (dos años hidrológicos)
 - **Barra de referencia:** Santa Rosa 220 kV
 - **Nota:** el COES publica el costo marginal en S/./kWh; se convirtió a S/./MWh multiplicando por 1000.
 
 ## Metodología
-1. Descarga y limpieza de datos con pandas
-2. Clasificación de cada registro por temporada (avenida / estiaje)
-3. Estadística descriptiva por temporada y por mes
-4. Análisis de correlación entre demanda y costo marginal
-5. Visualización de resultados
+1. Unificación de 24 archivos de costo marginal y limpieza con pandas
+2. Ajuste de la marca de tiempo (el COES etiqueta cada intervalo con su hora de fin)
+3. Promedio del costo marginal a intervalos de 30 min para cruzarlo con la demanda
+4. Clasificación por temporada (avenida: dic–may; estiaje: jun–nov)
+5. Estadística descriptiva y correlación, excluyendo la crisis de Camisea (1–21 mar 2026)
+6. Visualización de resultados
 
 ## Herramientas
-Python (pandas, NumPy, matplotlib), Jupyter Notebook
+Python (pandas, matplotlib), Google Colab / Jupyter Notebook
 
 ## Resultados
 
@@ -60,13 +62,19 @@ La estacionalidad hidrológica explica una diferencia moderada en el costo margi
 - Se analizó una sola barra (Santa Rosa 220 kV).
 - La correlación no implica causalidad; falta incorporar datos de hidrología y despacho por tecnología.
 - Próximo paso: analizar el perfil horario (punta vs. fuera de punta) y añadir caudales/volúmenes de embalses del COES.
+
 ## Estructura del repositorio
-- `data/` – datos descargados del COES
+- `data/` – archivos originales del COES y series limpias en CSV
 - `notebooks/` – análisis paso a paso
-- `src/` – funciones de limpieza y procesamiento
 - `images/` – gráficos usados en este README
 
 ## Cómo ejecutarlo
+Abre el notebook directamente en Google Colab (no requiere instalación):
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jhonmiltonpedz/costos-marginales-sein/blob/main/notebooks/analisis_cmg.ipynb)
+
+O en local:
+
 ```
 pip install -r requirements.txt
 jupyter notebook
@@ -74,4 +82,5 @@ jupyter notebook
 
 ## Autor
 Jhon Milton Peralta Diaz – Bachiller en Ingeniería Eléctrica (UNMSM)
-[LinkedIn](https://linkedin.com/in/jhonmiltonpedz)
+
+[LinkedIn](https://linkedin.com/in/jhonmiltonpedz) · [GitHub](https://github.com/jhonmiltonpedz)
